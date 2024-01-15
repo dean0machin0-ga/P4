@@ -17,7 +17,7 @@ Dive into the world of Savage Ink Society, the ultimate haven for rebels of arti
 ## How to Join the Savage Ranks:
 
 - [**Explore the Den**](#) - Begin your journey into the heart of rebellion!
-- [**Trello Board**](#) - Peek into the war room, witness our planning, stories, and the artistic uprising.
+- [**Trello Board**](https://trello.com/b/ApXqCQnk/savage-ink-society) - Peek into the war room, witness our planning, stories, and the artistic uprising.
 
 ## Future Savage Conquests:
 

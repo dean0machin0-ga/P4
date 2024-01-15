@@ -9,6 +9,7 @@ Dive into the world of Savage Ink Society, the ultimate haven for rebels of arti
 ### Technologies That Fuel Our Rebellion:
 
 - **Django**: For a backend that thrives on chaos.
+- **Python**: Pythonic chaos at the heart of our rebellion.
 - **HTML**: Crafting the foundation of our rebellion.
 - **CSS (Bootstrap)**: Styling to amplify the savage aesthetic.
 - **JavaScript (AJAX)**: Injecting life into the rebellion.

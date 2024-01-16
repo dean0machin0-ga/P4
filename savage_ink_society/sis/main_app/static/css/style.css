@@ -9,7 +9,12 @@ main {
     flex: 1 0 auto;
 }
 
+div.nav-wrapper {
+    background-color: rgb(71, 71, 71);
+}
+
 footer.page-footer {
+    background-color: rgb(71, 71, 71);
     padding-top: 0;
     text-align: right;
 }

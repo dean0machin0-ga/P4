@@ -10,3 +10,12 @@ def splash(request):
 # About View
 def about(request):
     return render(request, 'about.html')
+
+# Profile View
+def profile(request):
+    return render(request, 'profile.html')
+
+# Profile Create View
+# class ProfileCreate(CreateView):
+#     model = Profile
+#     fields = __all__

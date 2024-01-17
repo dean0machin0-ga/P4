@@ -1,23 +1,33 @@
 # Models
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
+from django.conf import settings
 
-
-# Profile Model
-class Profile(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
+# Custom Profile Model
+class Profile(AbstractUser):
     profile_img = models.ImageField(upload_to='profile_imgs/', blank=True)
+    bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=50, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    astrological_sign = models.CharField(max_length=50, blank=True)
+    
+    def __str__(self):
+        return f'{self.username} ({self.id})'
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, **kwargs):
+    def get_absolute_url(self):
+        return reverse('detail')
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    try:
+        instance.profile.save()
+    except Profile.DoesNotExist:
+        Profile.objects.create(user=instance)

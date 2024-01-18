@@ -12,9 +12,8 @@
                         <h5 class="card-title">
                             <u>{{ profile.username }}</u>
                         </h5>
-                        <p class="card-text"><strong>Bio: </strong>{{ profile.bio|linebreaks }}</p>
+                        <p class="card-text"><strong>Name: </strong>{{ profile.get_full_name|linebreaks }}</p>
                         <p class="card-text"><strong>Location: </strong>{{ profile.location|linebreaks }}</p>
-                        <p class="card-text"><strong>Bday: </strong>{{ profile.birth_date|linebreaks }}</p>
                     </div>
                 </a>
             </div>

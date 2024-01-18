@@ -2,6 +2,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     <h1>Ink Profile 💀</h1>
     <hr>
+
+    <div class="card">
+        <h5 class="card-title">{{ profile.username }}</h5>
+        <p class="card-text"><strong>Government Name: </strong>{{ profile.get_full_name|linebreaks }}</p>
+        <p class="card-text"><strong>Mug Shot: </strong>{{ profile.profile_img|linebreaks }}</p>
+        <p class="card-text"><strong>Life Story: </strong>{{ profile.bio|linebreaks }}</p>
+        <p class="card-text"><strong>Born Day: </strong>{{ profile.birth_date|linebreaks }}</p>
+        <p class="card-text"><strong>Star Sign: </strong>{{ profile.astrological_sign|linebreaks }}</p>
+    </div>
+</div>
 {% endblock %}

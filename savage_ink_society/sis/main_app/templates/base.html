@@ -15,11 +15,11 @@
         <nav>
         <div class="nav-wrapper">
             <ul>
-            <li><a href="/" class="left brand-logo">&nbsp;&nbsp;⛓️ Savage Ink Society ⛓️</a></li>
+            <li><a href="{% url 'splash' %}" class="left brand-logo">&nbsp;&nbsp;⛓️ Savage Ink Society ⛓️</a></li>
             </ul>
             <ul class="right">
-            <li><a href="/about">About SIS ⛓️</a></li>
-            <li><a href="/profiles">Ink Profile ⛓️</a></li>
+            <li><a href="{% url 'about' %}">About SIS ⛓️</a></li>
+            <li><a href="{% url 'profile_list' %}">Ink Profile ⛓️</a></li>
             </ul>
         </div>
         </nav>

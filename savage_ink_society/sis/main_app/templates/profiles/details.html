@@ -1,18 +1,43 @@
-<!-- Profile Detail -->
+<!-- Profile Details -->
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h1>Ink Profile 💀</h1>
-    <hr>
+    <div class="container">
+        <h1>Ink Profile 💀</h1>
+        <hr>
 
-    <div class="card">
-        <h5 class="card-title">{{ profile.username }}</h5>
-        <p class="card-text"><strong>Government Name 🪪: </strong>{{ profile.get_full_name|linebreaks }}</p>
-        <p class="card-text"><strong>Mug Shot 📷: </strong>{{ profile.profile_img|linebreaks }}</p>
-        <p class="card-text"><strong>Life Story 📖: </strong>{{ profile.bio|linebreaks }}</p>
-        <p class="card-text"><strong>Born Day 🍼: </strong>{{ profile.birth_date|linebreaks }}</p>
-        <p class="card-text"><strong>Star Sign 💫: </strong>{{ profile.astrological_sign|linebreaks }}</p>
+        <!-- Profile Info -->
+        <div class="card">
+            <h5 class="card-title">{{ profile.username }}</h5>
+            <p class="card-text"><strong>Government Name 🪪: </strong>{{ profile.get_full_name|linebreaks }}</p>
+            <p class="card-text"><strong>Mug Shot 📷: </strong>{{ profile.profile_img|linebreaks }}</p>
+            <p class="card-text"><strong>Life Story 📖: </strong>{{ profile.bio|linebreaks }}</p>
+            <p class="card-text"><strong>Born Day 🍼: </strong>{{ profile.birth_date|linebreaks }}</p>
+            <p class="card-text"><strong>Star Sign 💫: </strong>{{ profile.astrological_sign|linebreaks }}</p>
+        </div>
+
+        <!-- Tattoo Img -->
+        <h3>Ink Dreams</h3>
+        {% for tattoo_img in tattoo_imgs %}
+            <div class="card">
+                <a href="={% url 'tattoo_details' tattoo_img.id %}">
+                    <img class="card-img-top" src="{{ tattoo_img.img.url }}" alt="tattoo_img.img.name">
+                </a>
+                <div class="card-body">
+                    <p class="card-text"><strong>Likes: </strong>{{ tattoo_img.like_dislike }}</p>
+                    <form method="post" action="{% url 'toggle_like_dislike' tattoo_img.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Like/Dislike" class="btn btn-primary">
+                    </form>
+                    <form method="post" action="{% url 'add_comment' tattoo_img.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="comment_content" class="form-control" placeholder="Add a Comment" required>
+                        </div>
+                        <input type="submit" value="Add Comment" class="btn btn-success">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-</div>
 {% endblock %}

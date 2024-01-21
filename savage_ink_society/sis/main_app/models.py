@@ -35,6 +35,7 @@ class TattooImg(models.Model):
     img = models.ImageField(upload_to="imgs", blank=False)
     like_dislike = models.BooleanField(default=False)
     comments = models.ManyToManyField(Comment, related_name='tattoo_comments')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.img.name} (Likes: {self.like_dislike})'
@@ -43,8 +44,9 @@ class TattooImg(models.Model):
         self.like_dislike = not self.like_dislike
         self.save()
 
-    def add_comment(self, comment):
-        self.comments += f"\n{comment}"
+    def add_comment(self, comment_content, username):
+        comment = Comment.objects.create(title='', content=comment_content, username=username)
+        self.comments.add(comment)
         self.save()
 
 

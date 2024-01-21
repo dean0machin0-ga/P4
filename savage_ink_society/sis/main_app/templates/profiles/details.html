@@ -20,7 +20,7 @@
         <h3>Ink Dreams</h3>
         {% for tattoo_img in tattoo_imgs %}
             <div class="card">
-                <a href="={% url 'tattoo_details' tattoo_img.id %}">
+                <a href="{% url 'tattoo_details' tattoo_img.id %}">
                     <img class="card-img-top" src="{{ tattoo_img.img.url }}" alt="tattoo_img.img.name">
                 </a>
                 <div class="card-body">

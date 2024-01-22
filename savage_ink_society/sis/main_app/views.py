@@ -1,14 +1,21 @@
 # main_app/views 
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .models import Profile, TattooImg, Comment
+from .models import Profile, TattooImg, Comment, BackgroundImage
 from django.urls import reverse_lazy
+import random
 
 # Create your views here.
 
 # Splash View
 def splash(request):
-    return render(request, 'splash.html')
+    background_images = BackgroundImage.objects.all()
+    if background_images:
+        background_image = random.choice(background_images)
+    else:
+        background_image = None
+
+    return render(request, 'splash.html', {'background_image': background_image})
 
 # About View
 def about(request):

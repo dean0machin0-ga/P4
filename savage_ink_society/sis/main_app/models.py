@@ -18,7 +18,7 @@ class Profile(AbstractUser):
         return f'{self.username} ({self.id})'
 
     def get_absolute_url(self):
-        return reverse('detail')
+        return reverse('details')
 
 # Comment Model
 class Comment(models.Model):
@@ -35,7 +35,7 @@ class TattooImg(models.Model):
     img = models.ImageField(upload_to="imgs", blank=False)
     like_dislike = models.BooleanField(default=False)
     comments = models.ManyToManyField(Comment, related_name='tattoo_comments')
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return f'{self.img.name} (Likes: {self.like_dislike})'
@@ -49,6 +49,9 @@ class TattooImg(models.Model):
         self.comments.add(comment)
         self.save()
 
+class BackgroundImage(models.Model):
+    img_url = models.URLField()
+    caption = models.CharField(max_length=225)
 
 
 # aaaa

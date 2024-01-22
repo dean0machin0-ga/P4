@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Profile, TattooImg, Comment, BackgroundImage
 from django.urls import reverse_lazy
+from .forms import ProfileForm
 import random
 
 # Create your views here.
@@ -24,8 +25,9 @@ def about(request):
 # Profile Create
 class ProfileCreate(CreateView):
     model = Profile
-    fields = ['profile_img', 'bio', 'location', 'birth_date', 'astrological_sign']
-    template_name = 'profiles/profile_form.html'  # Specify the template name
+    form_class = ProfileForm
+    # fields = ['profile_img', 'bio', 'location', 'birth_date', 'astrological_sign']
+    template_name = 'profiles/profile_form.html' 
     success_url = reverse_lazy('profile_list')
 
 # Profile list 

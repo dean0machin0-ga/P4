@@ -1,10 +1,8 @@
 # Models
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-# from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 # Custom Profile Model
 class Profile(AbstractUser):
@@ -13,6 +11,9 @@ class Profile(AbstractUser):
     location = models.CharField(max_length=50, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     astrological_sign = models.CharField(max_length=50, blank=True)
+
+    # USERNAME_FIELD = 'username'
+    # REQUIRED_FIELDS = ['bio', 'location', 'birth_date', 'astrological_sign']
     
     def __str__(self):
         return f'{self.username} ({self.id})'
@@ -52,19 +53,3 @@ class TattooImg(models.Model):
 class BackgroundImage(models.Model):
     img_url = models.URLField()
     caption = models.CharField(max_length=225)
-
-
-# aaaa
-
-# Code In Limbo
-
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_or_update_profile(sender, instance, created, **kwargs):
-#     if created:
-#         if not hasattr(instance, 'profile'):
-#             Profile.objects.create(user=instance)
-#     else:
-#         instance.profile.save()
-
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def save_user_profile(sender, instance, **kwargs):

@@ -1,10 +1,9 @@
 # main_app/views 
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .models import Profile, TattooImg, Comment, BackgroundImage
+from .models import Profile, TattooImg, Comment, BackgroundImage, Comment
 from django.urls import reverse_lazy
-from .forms import ProfileForm
-import random
+from .forms import ProfileForm, CommentForm
 
 # Create your views here.
 
@@ -21,6 +20,8 @@ def splash(request):
 # About View
 def about(request):
     return render(request, 'about.html')
+
+# PROFILE VIEWS
 
 # Profile Create
 class ProfileCreate(CreateView):
@@ -48,3 +49,20 @@ def profile_details(request, profile_id):
         'tattoo_imgs': tattoo_imgs,
         'comments': comments,
     })
+
+# COMMENT VIEWS
+
+# Comment List
+def comment_list(request):
+    comments = Comment.objects.all()
+    return render(request, 'comments/list.html', {
+        'comments': comments
+    })
+
+# Comment Create
+
+class CommentCreate(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comments/comment_form.html' 
+    success_url = reverse_lazy('comment_list')

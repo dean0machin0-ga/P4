@@ -18,7 +18,8 @@
             <li><a href="{% url 'splash' %}" class="left brand-logo">&nbsp;&nbsp;⛓️ Savage Ink Society ⛓️</a></li>
             </ul>
             <ul class="right">
-            <li><a href="{% url 'about' %}">About SIS ⛓️</a></li>
+            <!-- <li><a href="{% url 'about' %}">About SIS ⛓️</a></li> -->
+            <li><a href="{% url 'comment_list' %}">Ink Comments ⛓️</a></li>
             <li><a href="{% url 'profile_list' %}">Ink Profile ⛓️</a></li>
             </ul>
         </div>
@@ -30,6 +31,7 @@
 </main>
 <footer class="page-footer">
     <div class="right">All Rights Reserved, &copy; 2024 Savage Ink Society 💀 &nbsp;</div>
+    <a href="{% url 'about' %}" class="left" style="color: white;">About SIS</a>
 </footer>
 </body>
 </html>

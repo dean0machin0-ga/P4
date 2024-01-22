@@ -1,0 +1,24 @@
+<!-- Comment list -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Ink Comments 💀</h1>
+        <hr style="width: 100%; border-color: white">
+
+        {% for comment in comments %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <u>{{ comment.title }}</u>
+                    </h5>
+                    <p class="card-text"><strong>User: </strong>{{ comment.username|linebreaks }}</p>
+                    <p class="card-text"><strong>User: </strong>{{ comment.content|linebreaks }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="text-center mt-3">
+            <a href="{% url 'comments_create' %}" class="btn btn-success" style="background-color: black;">Add New Comment</a>
+        </div>
+    </div> 
+{% endblock %}

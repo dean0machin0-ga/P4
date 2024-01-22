@@ -4,16 +4,17 @@
 {% block content %}
 <div style="background-image: url('{{ background_image.image_url }}'); background-size: cover; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
     <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Savage Ink Society 💀</h1>
-    <hr style="width: 50%; border-color: white">
+    <hr style="width: 100%; border-color: white">
 
     <!-- Search -->
-    <form id="search-form" style="margin-top: 20px">
-        <input type="text" id="search-input" placeholder="Your Wildest Ink Dreams Await 🔮" style="padding: 10px;">
-        <button type="submit" style="padding: 10px;">Dream</button>
+    <form id="search-form" style="margin-top: 20px; width: 100%;">
+        <input type="text" id="search-input" placeholder="Ink Search" style="padding: 10px; width: 100%;">
+        <button type="submit" style="padding: 10px; background-color: black; color: white;">Enter Ink Dream Portal</button>
     </form>
     
     <!-- Link to Create Ink Profile -->
-    <a href="{% url 'profile_create' %}" style="color: white; text-decoration: none; margin-top: 20px; font-size: 18px;">Create Ink Profile</a>
-
+    <button style="padding: 10px; margin-top: 125px; background-color: black; color: white;">
+        <a href="{% url 'profile_create' %}" style="color: white; text-decoration: none; margin-top: 20px; font-size: 18px;">Create Ink Profile</a>
+    </button>
 </div>
 {% endblock %}

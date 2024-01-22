@@ -2,13 +2,13 @@
 
 {% block content %}
     <div class="container">
-        <h1>Ink Profiles 💀</h1>
+        <h1 h1 style="color: white; text-shadow: 2px 2px 4px #000;">Ink Profiles 💀</h1>
         <hr>
 
         {% for profile in profiles %}
             <div class="card">
                 <a href="{% url 'details' profile.id %}" class="ink-profile-button">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: white; align-items: center; color: black;">
                         <h5 class="card-title">
                             <u>{{ profile.username }}</u>
                         </h5>

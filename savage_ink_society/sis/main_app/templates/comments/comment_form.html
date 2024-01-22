@@ -1,0 +1,39 @@
+<!-- Comment Form -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Add Comment 💀</h1>
+    <hr style="width: 100%; border-color: white">
+
+    <form method="post" enctype="multipart/form-data" style="width: 100%;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="background-color: black; color: white; margin-bottom: 20px;">Add Comment</button>
+    </form>
+</div>
+{% endblock %}
+    <!-- <div class="container">
+        <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Add Comment 💀</h1>
+        <form action="" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}">Title: </label>
+            {{ form.title }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}">Username: </label>
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            <label for="{{ form.content.id_for_label }}">Content: </label>
+            {{ form.content }}
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: black;">
+        </form>
+    </div> -->

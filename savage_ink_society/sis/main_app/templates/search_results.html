@@ -1,0 +1,22 @@
+<!-- Search Results -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h1>Search Results for "{{ search_query }}"</h1>
+    <ul>
+        {% for tattoo_shop in tattoo_shops %}
+            <li>
+                <strong>{{ tattoo_shop.name }}</strong><br>
+                Rating: {{ tattoo_shop.rating }} stars<br>
+                Review Count: {{ tattoo_shop.review_count }}<br>
+                Price Range: {{ tattoo_shop.price_range|default:"N/A" }}<br>
+                Address: {{ tattoo_shop.address }}<br>
+                Phone: {{ tattoo_shop.phone|default:"N/A" }}<br>
+                <a href="{{ tattoo_shop.business_page_link }}" target="_blank">Business Page Link</a><br>
+                <img src="{{ tattoo_shop.photo }}" alt="{{ tattoo_shop.name }} Photo" width="200"><br>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

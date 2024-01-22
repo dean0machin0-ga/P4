@@ -1,4 +1,6 @@
 # main_app/views 
+import requests
+from django.conf import settings
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Profile, TattooImg, Comment, BackgroundImage, Comment
@@ -60,9 +62,35 @@ def comment_list(request):
     })
 
 # Comment Create
-
 class CommentCreate(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'comments/comment_form.html' 
     success_url = reverse_lazy('comment_list')
+
+# Artist Search Views
+def search_results(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '')
+
+        url = "https://yelp-reviews.p.rapidapi.com/business-search"
+
+        headers = {
+            "X-RapidAPI-Key": "71b12d4b25mshb3f90218c7116aap18f41ejsnd8bd73c57ee9",
+            "X-RapidAPI-Host": "yelp-reviews.p.rapidapi.com"
+        }
+        params = {
+            "query": search_query,
+            "location": "Seattle, WA, USA",
+            "start": "0",
+            "yelp_domain": "yelp.com"
+        }
+        response = requests.get(url, headers=headers, params=params)
+
+        print(response.json())
+
+        results = response.json().get('businesses', [])
+
+        return render(request, 'search_results.html', {'results': results, 'search_query': search_query})
+    else:
+        return render(request, 'splash.html')

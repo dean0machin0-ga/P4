@@ -56,3 +56,13 @@ class TattooImg(models.Model):
 class BackgroundImage(models.Model):
     img_url = models.URLField()
     caption = models.CharField(max_length=225)
+
+class TattooShop(models.Model):
+    name = models.CharField(max_length=255)
+    rating = models.FloatField()
+    review_count = models.IntegerField()
+    price_range = models.CharField(max_length=10, blank=True, null=True)
+    address = models.TextField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    business_page_link = models.URLField()
+    photo = models.URLField()

@@ -8,6 +8,9 @@ django-heroku = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 pillow = "*"
+[packages]
+python-decouple = "==3.5"
+
 
 [dev-packages]
 

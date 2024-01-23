@@ -8,6 +8,7 @@ urlpatterns = [
     path('profiles/', views.profile_list, name='profile_list'),
     path('profiles/<int:profile_id>/', views.profile_details, name='details'),
     path('profiles/create', views.ProfileCreate.as_view(), name='profile_create'),
+    path('profiles/<int:profile_id>/add_photo/', views.add_photo, name='add_photo'),
     path('comments/', views.comment_list, name='comment_list'),
     path('comments/create', views.CommentCreate.as_view(), name='comments_create'),
     path('comments/<int:pk>/update/', views.CommentUpdate.as_view(), name='comments_update'),

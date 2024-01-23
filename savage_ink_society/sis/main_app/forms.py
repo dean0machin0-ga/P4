@@ -1,10 +1,10 @@
 from django import forms
-from .models import Profile, Comment
+from .models import CustomUser, Comment
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['profile_img', 'bio', 'location', 'birth_date', 'astrological_sign']
+        model = CustomUser
+        fields = ['username','email', 'bio', 'location', 'astrological_sign']
 
 class CommentForm(forms.ModelForm):
     class Meta:

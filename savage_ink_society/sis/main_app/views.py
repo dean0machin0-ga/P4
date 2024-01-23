@@ -1,14 +1,25 @@
 # main_app/views 
+import os
+import uuid
+import boto3
 import requests
+from django.apps import AppConfig
 from django.http import JsonResponse
-from django.conf import settings
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
-from .models import Profile, TattooImg, TattooShop, Comment, BackgroundImage, Comment
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import ProfileForm, CommentForm
+from .models import CustomUser, Photo, TattooShop, Comment, BackgroundImage, Comment
+# from django.conf import settings
 
 # Create your views here.
+
+class MainAppConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'main_app'
+
+    def ready(self):
+        import main_app.signals
 
 # Splash View
 def splash(request):
@@ -28,30 +39,45 @@ def about(request):
 
 # Profile Create
 class ProfileCreate(CreateView):
-    model = Profile
+    model = CustomUser
     form_class = ProfileForm
-    # fields = ['profile_img', 'bio', 'location', 'birth_date', 'astrological_sign']
     template_name = 'profiles/profile_form.html' 
     success_url = reverse_lazy('profile_list')
 
 # Profile list 
 def profile_list(request):
-    profiles = Profile.objects.all()
+    profiles = CustomUser.objects.all()
     return render(request, 'profiles/list.html', {
         'profiles': profiles
     })
     
 # Profile Detail
 def profile_details(request, profile_id):
-    profile = Profile.objects.get(id=profile_id)
-    tattoo_imgs = TattooImg.objects.filter(comments__username=profile.username)
+    profile = CustomUser.objects.get(id=profile_id)
+    # tattoo_imgs = TattooImg.objects.filter(comments__username=profile.username)
     comments = Comment.objects.filter(username=profile.username)
     
     return render(request, 'profiles/details.html', {
         'profile': profile,
-        'tattoo_imgs': tattoo_imgs,
+        # 'tattoo_imgs': tattoo_imgs,
         'comments': comments,
     })
+
+# Add Photo View
+def add_photo(request, profile_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Photo.objects.create(url=url, profile_id=profile_id)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('details', profile_id=profile_id)
 
 # COMMENT VIEWS
 

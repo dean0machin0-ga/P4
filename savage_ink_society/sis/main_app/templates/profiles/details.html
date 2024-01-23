@@ -20,7 +20,7 @@
         <div class="row">
             {% for photo in profile.photo_set.all %}
                 <div class="col-md-4 mb-3">
-                    <img class="img-fluid rounded" src="{{photo.url}}" alt="Tattoo Photo">
+                    <img class="img-fluid rounded" src="{{photo.url}}" alt="Tattoo Photo" style="width: 50%;">
                 </div>
             {% empty %}
                 <div class="card-panel black-text center-align">All My Dreams Are Dead 💀</div>
@@ -28,12 +28,12 @@
         </div>
 
         <!-- Add Photo Form -->
-        <form action="{% url 'add_photo' profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel mt-4">
+        <form action="{% url 'add_photo' profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel mt-4" style="margin-bottom: 7rem;">
             {% csrf_token %}
             <div class="mb-3">
                 <input type="file" name="photo-file" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success" style="background-color: black; border-color: white;">Upload Dreams</button>
+            <button type="submit" class="btn btn-primary" style="background-color: black; border-color: white; color: white;">Upload Dreams</button>
         </form>
     </div>
 {% endblock %}

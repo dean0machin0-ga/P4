@@ -6,7 +6,7 @@ from crispy_forms.layout import Submit
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'bio', 'location', 'astrological_sign']
+        fields = ['username', 'full_name', 'email', 'bio', 'location', 'astrological_sign']
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
@@ -27,4 +27,4 @@ class CommentForm(forms.ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-8'
-        self.helper.add_input(Submit('submit', 'Save'))
+        # self.helper.add_input(Submit('submit', 'Save'))

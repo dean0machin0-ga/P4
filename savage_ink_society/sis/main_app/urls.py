@@ -16,5 +16,4 @@ urlpatterns = [
     path('comments/<int:comment_id>/', views.comment_detail, name='comment_detail'),
     path('search_results/', views.search_results, name='search_results'),
     path('tattoo_imgs/', views.tattoo_list, name='tattoo_list'),
-    # path('toggle_like_dislike/<int:tattoo_img_id>/', views.toggle_like_dislike, name='toggle_like_dislike'),
 ]

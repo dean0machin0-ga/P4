@@ -18,3 +18,9 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
+@media (max-width: 768px) {
+    form {
+        width: 100%;
+    }
+}

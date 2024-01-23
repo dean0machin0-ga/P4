@@ -1,21 +1,18 @@
-<!-- Splash Page -->
 {% extends 'base.html' %}
 
 {% block content %}
 <div style="background-image: url('{{ background_image.image_url }}'); background-size: cover; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Savage Ink Society 💀</h1>
-    <hr style="width: 100%; border-color: white">
+    <h1 class="text-white" style="text-shadow: 2px 2px 4px #000;">Savage Ink Society 💀</h1>
+    <hr class="bg-white" style="width: 100%; border-color: white">
 
     <!-- Search -->
     <form id="search-form" style="margin-top: 20px; width: 100%;" action="{% url 'search_results' %}" method="post">
         {% csrf_token %}
-        <input type="text" id="search-input" name="search_query" placeholder="Ink Search" style="padding: 10px; width: 100%;">
-        <button type="submit" style="padding: 10px; background-color: black; color: white;">Enter Ink Dream Portal</button>
+        <input type="text" id="search-input" name="search_query" placeholder="Ink Search" class="form-control" style="width: 100%;">
+        <button type="submit" class="btn btn-dark" style="margin-top: 10px; background-color: black;">Enter Ink Dream Portal</button>
     </form>
     
     <!-- Link to Create Ink Profile -->
-    <button style="padding: 10px; margin-top: 125px; background-color: black; color: white;">
-        <a href="{% url 'profile_create' %}" style="color: white; text-decoration: none; margin-top: 20px; font-size: 18px;">Create Ink Profile</a>
-    </button>
+    <a href="{% url 'profile_create' %}" class="btn btn-dark mt-4" style="text-decoration: none; font-size: 18px; background-color: black;">Create Ink Profile</a>
 </div>
 {% endblock %}

@@ -2,25 +2,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Ink Comments 💀</h1>
-        <hr style="width: 100%; border-color: white">
+<div class="container">
+    <h1 class="text-white" style="text-shadow: 2px 2px 4px #000;">Ink Comments 💀</h1>
+    <hr class="text-white">
 
-        {% for comment in comments %}
-            <div class="card">
-                <a href="{% url 'comment_detail' comment.id %}" class="ink-comment-button">
+    {% for comment in comments %}
+        <div class="card">
+            <a href="{% url 'comment_detail' comment.id %}" class="ink-comment-button text-decoration-none">
                 <div class="card-body" style="color: black;">
                     <h5 class="card-title">
                         <u>{{ comment.title }}</u>
                     </h5>
                     <p class="card-text"><strong>Date: </strong>{{ comment.timestamp }}</p>
                 </div>
-                </a>
-            </div>
-        {% endfor %}
-
-        <div class="text-center mt-3">
-            <a href="{% url 'comments_create' %}" class="btn btn-success" style="background-color: black;">Add New Comment</a>
+            </a>
         </div>
-    </div> 
+    {% endfor %}
+
+    <div class="text-center mt-3">
+        <a href="{% url 'comments_create' %}" class="btn btn-success" style="background-color: black; border-color: white;">Add New Comment</a>
+    </div>
+</div>
 {% endblock %}

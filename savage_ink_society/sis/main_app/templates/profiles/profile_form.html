@@ -2,14 +2,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Create Your Ink Profile 💀</h1>
-        <hr style="width: 100%; border-color: white">
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 class="text-white" style="text-shadow: 2px 2px 4px #000;">Create Your Ink Profile 💀</h1>
+    <hr class="bg-white" style="width: 100%; border-color: white">
 
-        <form method="post" enctype="multipart/form-data" style="width: 100%;">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary" style="background-color: black; color: white; margin-bottom: 25px;">Join Us</button>
-        </form>
-    </div>
+    <form method="post" enctype="multipart/form-data" style="width: 100%;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark" style="margin-bottom: 25px; background-color: black;">Join Us</button>
+    </form>
+</div>
 {% endblock %}

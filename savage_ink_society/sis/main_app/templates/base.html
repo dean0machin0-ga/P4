@@ -1,4 +1,3 @@
-<!-- Base -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,32 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Savage Ink Society</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-color: #40404599; 
+            color: #fff; 
+        }
+
+        header.navbar-fixed {
+            background-color: #000000; 
+        }
+
+        .navbar-toggler-icon {
+        background-color: #999; 
+    }
+
+        nav .navbar-brand, nav .navbar-nav a {
+            color: #fff !important; 
+        }
+
+        .nav-link {
+            margin-left: 25px;
+        }
+
+        main.container {
+            margin-top: 20px;
+        }
+
+        footer.page-footer {
+            background-color: #000000; 
+            color: #fff; 
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer.page-footer a {
+            color: #fff; 
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <header class="navbar-fixed">
-        <nav>
-        <div class="nav-wrapper">
-            <ul>
-            <li><a href="{% url 'splash' %}" class="left brand-logo">&nbsp;&nbsp;⛓️ Savage Ink Society ⛓️</a></li>
-            </ul>
-            <ul class="right">
-            <!-- <li><a href="{% url 'about' %}">About SIS ⛓️</a></li> -->
-            <li><a href="{% url 'comment_list' %}">Ink Comments ⛓️</a></li>
-            <li><a href="{% url 'profile_list' %}">Ink Profile ⛓️</a></li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a href="{% url 'splash' %}" class="navbar-brand">&nbsp;&nbsp;⛓️ Savage Ink Society ⛓️</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="{% url 'comment_list' %}" class="nav-link">Ink Comments ⛓️</a></li>
+                        <li class="nav-item"><a href="{% url 'profile_list' %}" class="nav-link">Ink Profiles ⛓️</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
-<main class="container">
-    {% block content %}
-    {% endblock %}
-</main>
-<footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2024 Savage Ink Society 💀 &nbsp;</div>
-    <a href="{% url 'about' %}" class="left" style="color: white;">About SIS</a>
-</footer>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="page-footer">
+        <div class="float-end">All Rights Reserved, &copy; 2024 Savage Ink Society 💀 &nbsp;</div>
+        <a href="{% url 'about' %}" class="float-start" style="color: white;">About SIS</a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

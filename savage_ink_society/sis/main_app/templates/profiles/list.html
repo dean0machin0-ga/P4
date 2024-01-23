@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1 h1 style="color: white; text-shadow: 2px 2px 4px #000;">Ink Profiles 💀</h1>
-        <hr>
+<div class="container">
+    <h1 class="text-white" style="text-shadow: 2px 2px 4px #000;">Ink Profiles 💀</h1>
+    <hr class="text-white">
 
-        {% for profile in profiles %}
-            <div class="card">
-                <a href="{% url 'details' profile.id %}" class="ink-profile-button">
-                    <div class="card-body" style="background-color: white; align-items: center; color: black;">
-                        <h5 class="card-title">
-                            <u>{{ profile.username }}</u>
-                        </h5>
-                        <p class="card-text"><strong>Name: </strong>{{ profile.get_full_name|linebreaks }}</p>
-                        <p class="card-text"><strong>Location: </strong>{{ profile.location|linebreaks }}</p>
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
-        <button style="padding: 10px; margin-bottom: 100px; background-color: black; color: white;">
-            <a href="{% url 'profile_create' %}" style="color: white; text-decoration: none; margin-top: 20px; font-size: 18px;">Create Ink Profile</a>
-        </button>
-    </div>
+    {% for profile in profiles %}
+        <div class="card mb-3">
+            <a href="{% url 'details' profile.id %}" class="ink-profile-button text-decoration-none">
+                <div class="card-body" style="background-color: white; align-items: center; color: black;">
+                    <h5 class="card-title">
+                        <u>{{ profile.username }}</u>
+                    </h5>
+                    <p class="card-text"><strong>Name: </strong>{{ profile.get_full_name|linebreaks }}</p>
+                    <p class="card-text"><strong>Location: </strong>{{ profile.location|linebreaks }}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    <button class="btn btn-dark" style="margin-bottom: 100px; background-color: black; border: white;">
+        <a href="{% url 'profile_create' %}" class="text-white text-decoration-none" style="font-size: 18px;">Create Ink Profile</a>
+    </button>
+</div>
 {% endblock %}

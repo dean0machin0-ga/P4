@@ -123,19 +123,6 @@ def tattoo_list(request):
         'tattoos' : tattoos,
     })
 
-# Tattoo Details
-# class TattooImgDetail(DetailView):
-#     model = TattooImg
-#     template_name = 'tattoo_img/tattoo_img_details.html'
-#     context_object_name = 'tattoo_img'
-
-#  Tattoo Toggle
-# def toggle_like_dislike(request, tattoo_img_id):
-#     tattoo_img = get_object_or_404(TattooImg, id=tattoo_img_id)
-#     tattoo_img.like_dislike = not tattoo_img.like_dislike
-#     tattoo_img.save()
-
-#     return JsonResponse({'success': True})
 
 # SEARCH VIEWS
 
@@ -159,22 +146,42 @@ def search_results(request):
         response = requests.get(url, headers=headers, params=params)
 
         print(response.json())
-        api_data = response.json().get('businesses', [])
 
-        for shop_data in api_data:
-            TattooShop.objects.create(
-                name=shop_data.get('name', ''),
-                rating=shop_data.get('rating', 0.0),
-                review_count=shop_data.get('review_count', 0),
-                price_range=shop_data.get('price', ''),
-                address=shop_data.get('location', {}).get('address1', ''),
-                phone=shop_data.get('phone', ''),
-                business_page_link=shop_data.get('url', ''),
-                photo=shop_data.get('image_url', '')
-            )
+        api_data = response.json().get('data', [])
 
-        tattoo_shops = TattooShop.objects.all()
+        context = {
+            'search_query': search_query,
+            'tattoo_shops': api_data,
+        }
 
-        return render(request, 'search_results.html', {'tattoo_shops': tattoo_shops, 'search_query': search_query})
+        return render(request, 'search_results.html', context)
     else:
         return render(request, 'splash.html')
+    
+
+        # for shop_data in api_data:
+        #     TattooShop.objects.create(
+        #         name=shop_data.get('name', ''),
+        #         rating=shop_data.get('rating', 0.0),
+        #         review_count=shop_data.get('review_count', 0),
+        #         price_range=shop_data.get('price', ''),
+        #         address=shop_data.get('location', {}).get('address1', ''),
+        #         phone=shop_data.get('phone', ''),
+        #         business_page_link=shop_data.get('url', ''),
+        #         photo=shop_data.get('image_url', '')
+        #     )
+
+        # tattoo_shops = TattooShop.objects.all()
+# Tattoo Details
+# class TattooImgDetail(DetailView):
+#     model = TattooImg
+#     template_name = 'tattoo_img/tattoo_img_details.html'
+#     context_object_name = 'tattoo_img'
+
+#  Tattoo Toggle
+# def toggle_like_dislike(request, tattoo_img_id):
+#     tattoo_img = get_object_or_404(TattooImg, id=tattoo_img_id)
+#     tattoo_img.like_dislike = not tattoo_img.like_dislike
+#     tattoo_img.save()
+
+#     return JsonResponse({'success': True})

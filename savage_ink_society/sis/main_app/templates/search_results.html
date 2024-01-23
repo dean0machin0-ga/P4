@@ -3,8 +3,8 @@
 
 {% block content %}
 <div>
-    <h1>Search Results for "{{ search_query }}"</h1>
-    <ul style="color: black;">
+    <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Search Results for "{{ search_query }}"</h1>
+    <ul style="color: white; text-shadow: 2px 2px 4px #000;">
         {% for tattoo_shop in tattoo_shops %}
             <li>
                 <strong>{{ tattoo_shop.name }}</strong><br>

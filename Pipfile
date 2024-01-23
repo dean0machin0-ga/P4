@@ -8,6 +8,7 @@ django-heroku = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 pillow = "*"
+environ = "*"
 python-decouple = "*"
 
 

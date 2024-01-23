@@ -2,15 +2,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if object %}
+<h1 style="color: white; text-shadow: 2px 2px 4px #000;">Update Comment 💀 <span class="black-text">{{object.name}}</span></h1>
+{% else %}
+<h1 style="color: white; text-shadow: 2px 2px 4px #000;">Add Comment 💀</h1>
+{% endif %}
 
 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Add Comment 💀</h1>
-    <hr style="width: 100%; border-color: white">
-
     <form method="post" enctype="multipart/form-data" style="width: 100%;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary" style="background-color: black; color: white; margin-bottom: 20px;">Add Comment</button>
+        <button type="submit" class="btn btn-primary" style="background-color: black; color: white; margin-bottom: 20px;">Put It In Ink</button>
     </form>
 </div>
 {% endblock %}

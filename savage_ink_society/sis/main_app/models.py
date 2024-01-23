@@ -12,9 +12,6 @@ class Profile(AbstractUser):
     birth_date = models.DateField(null=True, blank=True)
     astrological_sign = models.CharField(max_length=50, blank=True)
 
-    # USERNAME_FIELD = 'username'
-    # REQUIRED_FIELDS = ['bio', 'location', 'birth_date', 'astrological_sign']
-    
     def __str__(self):
         return f'{self.username} ({self.id})'
 
@@ -36,10 +33,11 @@ class Comment(models.Model):
 
 # Tattoo Image Model
 class TattooImg(models.Model):
-    img = models.ImageField(upload_to="imgs", blank=False)
+    img = models.ImageField(upload_to="tattoo_imgs", blank=False)
     like_dislike = models.BooleanField(default=False)
     comments = models.ManyToManyField(Comment, related_name='tattoo_comments')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
+    # upload_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.img.name} (Likes: {self.like_dislike})'
@@ -49,14 +47,25 @@ class TattooImg(models.Model):
         self.save()
 
     def add_comment(self, comment_content, username):
-        comment = Comment.objects.create(title='', content=comment_content, username=username)
+        comment_profile = get_user_model().objects.get(username=username).profile
+        comment = Comment.objects.create(title='', content=comment_content, username=username, profile=comment_profile)
         self.comments.add(comment)
         self.save()
 
+# Photo Model
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    tattoo = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"My dream tattoo profile_id: {self.profile_id} @{self.url}"
+
+# Background Img Model
 class BackgroundImage(models.Model):
     img_url = models.URLField()
     caption = models.CharField(max_length=225)
 
+# API Model
 class TattooShop(models.Model):
     name = models.CharField(max_length=255)
     rating = models.FloatField()

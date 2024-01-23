@@ -1,0 +1,24 @@
+<!-- Comment Details -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Comment Details 💀</h1>
+        <hr >
+
+        <!-- Profile Info -->
+        <div class="card-action" style="background-color: white; align-items: center; color: black;">
+            <h5 class="card-title">{{ comment.title }}</h5>
+            <p class="card-text"><strong>Comment: </strong>{{ comment.content }}</p>
+            <p class="card-text"><strong>Username: </strong>{{ comment.username }}</p>
+            <p class="card-text"><strong>Date: </strong>{{ comment.timestamp }}</p>
+        </div>
+        {% if comment.id %}
+        <button class="btn btn-success" style="background-color: black;"><a href="{% url 'comments_update' comment.id %}" style="color: white;">Edit</a></button>
+        <button class="btn btn-success" style="background-color: black;"><a href="{% url 'comments_delete' comment.id %}" style="color: white;">Delete</a></button>
+        <button class="btn btn-success" style="background-color: black;"><a href="{% url 'comment_list' %}" style="color: white;">BACK</a></button>
+    {% else %}
+        <p>Edit and Delete actions not available for this comment.</p>
+    {% endif %}
+    </div>
+{% endblock %}

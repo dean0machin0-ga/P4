@@ -88,8 +88,17 @@ class CommentCreate(CreateView):
 # Comment Update
 class CommentUpdate(UpdateView):
     model = Comment
-    fields = ['title', 'content']
+    form_class = CommentForm 
     template_name = 'comments/comment_form.html'
+    success_url = reverse_lazy('comment_list') 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update_mode'] = True  
+        return context
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 # Comment Delete
 class CommentDelete(DeleteView):

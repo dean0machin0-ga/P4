@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-{% if object %}
+{% if update_mode %}
     <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Update Comment 💀 <span class="black-text">{{object.name}}</span></h1>
 {% else %}
     <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Add Comment 💀</h1>
@@ -13,7 +13,9 @@
     <form method="post" enctype="multipart/form-data" style="width: 100%;">
         {% csrf_token %}
         {% crispy form %}
-        <!-- <button type="submit" class="btn btn-dark mt-3" style="background-color: black; color: white; border: solid white;">Put It In Ink</button> -->
+        <!-- <button type="submit" class="btn btn-dark mt-3" style="background-color: black; color: white; border: solid white;">
+            {% if update_mode %}Cover Up{% else %}Put It In Ink{% endif %}
+        </button> -->
     </form>
 </div>
 {% endblock %}

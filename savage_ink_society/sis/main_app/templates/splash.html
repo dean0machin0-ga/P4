@@ -9,10 +9,10 @@
     <form id="search-form" style="margin-top: 20px; width: 100%;" action="{% url 'search_results' %}" method="post">
         {% csrf_token %}
         <input type="text" id="search-input" name="search_query" placeholder="Ink Search" class="form-control" style="width: 100%;">
-        <button type="submit" class="btn btn-dark" style="margin-top: 10px; background-color: black;">Enter Ink Dream Portal</button>
+        <button type="submit" class="btn btn-dark" style="margin-top: 10px; background-color: black; border: solid white">Enter Ink Dream Portal</button>
     </form>
     
     <!-- Link to Create Ink Profile -->
-    <a href="{% url 'profile_create' %}" class="btn btn-dark mt-4" style="text-decoration: none; font-size: 18px; background-color: black;">Create Ink Profile</a>
+    <a href="{% url 'profile_create' %}" class="btn btn-dark mt-4" style="text-decoration: none; font-size: 18px; background-color: black; border: solid white;">Create Ink Profile</a>
 </div>
 {% endblock %}

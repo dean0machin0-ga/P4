@@ -5,14 +5,13 @@
 <h1 style="color: white; text-shadow: 2px 2px 4px #000;">Delete Comment 💀</h1>
 <hr style="width: 100%; border-color: white">
 
-
 <h4 style="color: white; text-shadow: 2px 2px 4px #000;">No turning back amigo.. Sure you wanna erase: <span class="black-text">{{ object.title }}</span> for forever?</h4>
 
 <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="FOREVER GONE" class="btn btn-success" style="background-color: black;">
-    <button style="background-color: white;">
-        <a href="{% url 'comment_detail' comment.id %}" style="color: black;">Cancel</a>
-    </button>
+    <input type="submit" value="FOREVER GONE" class="btn btn-dark" style="background-color: black; border: solid red;">
+    <a href="{% url 'comment_detail' comment.id %}" class="btn btn-danger" style="background-color: white; color: black; border: solid black; text-decoration: none;">
+        Cancel
+    </a>
 </form>
 {% endblock %}
